@@ -1,0 +1,41 @@
+// Converts pixel values to rem units based on a base font size.
+@function rem($pixels) {
+  @return $pixels / 16px * 1rem;
+}
+
+// Strips units from a numeric value.
+@function strip-unit($value) {
+  @return str-to-number($value);
+}
+
+@function lighten($color, $amount) {
+  @return lighten($color, $amount);
+}
+
+// Adjusts the lightness of a color.
+@function darken($color, $amount) {
+  @return darken($color, $amount);
+}
+
+// Converts a decimal number to a percentage.
+@function percentage($value) {
+  @return percentage($value);
+}
+
+// Returns the minimum or maximum of two or more numbers.
+@function min($numbers...) {
+  @return min($numbers...);
+}
+
+@function max($numbers...) {
+  @return max($numbers...);
+}
+
+// Checks if a color is light or dark.
+@function is-light($color) {
+  @return lightness($color) > 50%;
+}
+
+@function is-dark($color) {
+  @return lightness($color) <= 50%;
+}

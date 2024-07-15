@@ -1,0 +1,32 @@
+@import "variables";
+
+/// Mixin to apply border radius to elements
+/// @param {Number} $top-left - Top left border radius
+/// @param {Number} $top-right - Top right border radius
+/// @param {Number} $bottom-right - Bottom right border radius
+/// @param {Number} $bottom-left - Bottom left border radius
+@mixin border-radius(
+  $top-left: 0,
+  $top-right: 0,
+  $bottom-right: 0,
+  $bottom-left: 0
+) {
+  border-top-left-radius: $top-left;
+  border-top-right-radius: $top-right;
+  border-bottom-right-radius: $bottom-right;
+  border-bottom-left-radius: $bottom-left;
+}
+
+// Responsive mixin
+@mixin respond-to($breakpoint) {
+  $breakpoints: $breakpoints !default;
+  $value: map-get($breakpoints, $breakpoint);
+
+  @if $value {
+    @media (max-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "No value found for breakpoint: #{$breakpoint}.";
+  }
+}
