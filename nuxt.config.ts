@@ -7,7 +7,15 @@ export default defineNuxtConfig({
     // Experimental support for auto loading (see note):
     autoImport: true,
   },
-  css: ["~/assets/scss/main.scss"],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "~/assets/scss/main.scss";',
+        },
+      },
+    },
+  },
   app: {
     head: {
       link: [
