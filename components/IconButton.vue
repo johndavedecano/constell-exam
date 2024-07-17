@@ -12,6 +12,7 @@ interface IconProps {
   aria_label?: string;
   href?: string;
   title?: string;
+  label?: string;
   theme?: IconTheme;
 }
 
@@ -23,6 +24,7 @@ const {
   aria_label = "",
   href = "",
   title = "",
+  label = "",
 } = defineProps<IconProps>();
 
 const emit = defineEmits<{
@@ -52,6 +54,7 @@ const classnames = reactive({
     tabindex="0"
   >
     <Icon :name="name" />
+    <span class="icon-btn__label" v-if="label">{{ label }}</span>
   </component>
 </template>
 
@@ -67,20 +70,27 @@ const classnames = reactive({
   cursor: pointer;
   user-select: auto;
   font-size: 120%;
-}
 
-.icon-btn-primary {
-  background-color: $color-primary;
-  color: $color-white;
-}
+  &-primary {
+    background-color: $color-primary;
+    color: $color-white;
+  }
 
-.icon-btn-secondary {
-  background-color: $color-secondary;
-  color: $color-white;
-}
+  &-secondary {
+    background-color: $color-secondary;
+    color: $color-white;
+  }
 
-.icon-btn-transparent {
-  background-color: transparent;
-  color: $color-primary;
+  &-transparent {
+    background-color: transparent;
+    color: $color-primary;
+  }
+
+  &__label {
+    display: none;
+    @include respond-to(lg) {
+      display: inline;
+    }
+  }
 }
 </style>

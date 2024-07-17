@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <IconButton element="button" name="chevron_backward" :size="40" />
+    <BackButton />
     <Spacer />
     <Brand />
     <Spacer />
