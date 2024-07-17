@@ -1,0 +1,105 @@
+// Mixin for generating margin classes
+@mixin generate-margin-classes($sizes) {
+  @each $size, $value in $sizes {
+    .m#{$size} {
+      margin: $value !important;
+    }
+    .mt#{$size} {
+      margin-top: $value !important;
+    }
+    .mb#{$size} {
+      margin-bottom: $value !important;
+    }
+    .ml#{$size} {
+      margin-left: $value !important;
+    }
+    .mr#{$size} {
+      margin-right: $value !important;
+    }
+    .mx#{$size} {
+      margin-left: $value !important;
+      margin-right: $value !important;
+    }
+    .my#{$size} {
+      margin-top: $value !important;
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+// Mixin for generating padding classes
+@mixin generate-padding-classes($sizes) {
+  @each $size, $value in $sizes {
+    .p#{$size} {
+      padding: $value !important;
+    }
+    .pt#{$size} {
+      padding-top: $value !important;
+    }
+    .pb#{$size} {
+      padding-bottom: $value !important;
+    }
+    .pl#{$size} {
+      padding-left: $value !important;
+    }
+    .pr#{$size} {
+      padding-right: $value !important;
+    }
+    .px#{$size} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+    .py#{$size} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+// Define your spacing scale
+$spacing-sizes: (
+  2: 0.125rem,
+  4: 0.25rem,
+  6: 0.375rem,
+  8: 0.5rem,
+  10: 0.625rem,
+  12: 0.75rem,
+  14: 0.875rem,
+  16: 1rem,
+  18: 1.125rem,
+  20: 1.25rem,
+  22: 1.375rem,
+  24: 1.5rem,
+  26: 1.625rem,
+  28: 1.75rem,
+  30: 1.875rem,
+  32: 2rem,
+  34: 2.125rem,
+  36: 2.25rem,
+  38: 2.375rem,
+  40: 2.5rem,
+  42: 2.625rem,
+  44: 2.75rem,
+  46: 2.875rem,
+  48: 3rem,
+  50: 3.125rem,
+  52: 3.25rem,
+  54: 3.375rem,
+  56: 3.5rem,
+  58: 3.625rem,
+  60: 3.75rem,
+  62: 3.875rem,
+  64: 4rem,
+  66: 4.125rem,
+  68: 4.25rem,
+  70: 4.375rem,
+  72: 4.5rem,
+  74: 4.625rem,
+  76: 4.75rem,
+  78: 4.875rem,
+  80: 5rem,
+);
+
+// Generate the classes
+@include generate-margin-classes($spacing-sizes);
+@include generate-padding-classes($spacing-sizes);

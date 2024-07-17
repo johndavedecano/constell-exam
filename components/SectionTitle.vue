@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { defineProps } from "vue";
-
 interface SectionTitleProps {
   title?: string;
 }
@@ -20,5 +18,6 @@ const { title } = defineProps<SectionTitleProps>();
   letter-spacing: 0.5px;
   text-align: left;
   text-transform: uppercase;
+  margin-bottom: 8px;
 }
 </style>

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from "vue";
 import type { User } from "~/types";
 
 interface ContactCardProps extends User {}
@@ -29,9 +28,24 @@ const { user } = props;
       </div>
     </div>
     <div class="contact-card__teams">
-      <Avatar :initial="user.initials" :size="24" customClass="stack" />
-      <Avatar :initial="user.initials" :size="24" customClass="stack" />
-      <Avatar :initial="user.initials" :size="24" customClass="stack" />
+      <Avatar
+        :initial="user.initials"
+        :size="24"
+        customClass="stack"
+        color="error"
+      />
+      <Avatar
+        :initial="user.initials"
+        :size="24"
+        customClass="stack"
+        color="success"
+      />
+      <Avatar
+        :initial="user.initials"
+        :size="24"
+        customClass="stack"
+        color="info"
+      />
     </div>
     <div class="contact-card__action">
       <IconButton

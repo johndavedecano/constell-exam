@@ -26,12 +26,46 @@ const user: User = {
   functionName: "1st Chef",
   userPermissions: [],
 };
+
+const team: Team = {
+  iri: "/api/teams/1",
+  id: 1,
+  name: "Front-enders",
+  color: "#C1E0B9",
+  abbreviation: "F",
+  teamPermissions: [],
+};
 </script>
 
 <template>
-  <SectionTitle title="People"></SectionTitle>
-  <ContactCardList />
-  <NewAction label="New Item" />
+  <Container>
+    <div class="pt32"></div>
+    <div class="page-section">
+      <SectionTitle title="Teams" />
+    </div>
+    <TeamCardList>
+      <TeamCard :team="team" />
+      <TeamCard :team="team" />
+      <TeamCard :team="team" />
+      <TeamCard :team="team" />
+    </TeamCardList>
+    <div class="page-section">
+      <NewAction label="New Team" />
+    </div>
+    <div class="pt32"></div>
+    <div class="page-section">
+      <SectionTitle title="People" />
+    </div>
+    <ContactCardList>
+      <ContactCard :user="user" />
+      <ContactCard :user="user" />
+      <ContactCard :user="user" />
+      <ContactCard :user="user" />
+      <ContactCard :user="user" />
+    </ContactCardList>
+    <div class="page-section">
+      <NewAction label="New User" />
+    </div>
+    <div class="pt32"></div>
+  </Container>
 </template>
-
-<style lang="scss" scoped></style>

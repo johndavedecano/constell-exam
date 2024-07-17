@@ -30,19 +30,22 @@ const user: User = {
 
 <template>
   <div class="contact-card-list">
-    <ContactCard :user="user" />
-    <ContactCard :user="user" />
-    <ContactCard :user="user" />
-    <ContactCard :user="user" />
-    <ContactCard :user="user" />
-    <ContactCard :user="user" />
+    <slot />
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .contact-card-list {
   display: flex;
   flex-direction: column;
+
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @include respond-to(lg) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }
 
 .contact-card-list .contact-card {

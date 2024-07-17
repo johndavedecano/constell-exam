@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from "vue";
 import type { Team } from "~/types";
 
 interface TeamCardProps extends Team {}
 
-const props = defineProps<TeamCardProps>();
+const { team } = defineProps<{ team: TeamCardProps }>();
 
 const emit = defineEmits<{
   (e: "click"): void;
@@ -15,11 +14,11 @@ const onClick = () => emit("click");
 <template>
   <div class="team-card">
     <div class="team-card__detail">
-      <Avatar :initial="props.abbreviation" :color="props.color" />
+      <Avatar :initial="team.abbreviation" :color="team.color" />
       <a
-        :href="props.iri"
+        :href="team.iri"
         class="team-card__title"
-        v-text="props.name"
+        v-text="team.name"
         @click.prevent="onClick"
       ></a>
     </div>

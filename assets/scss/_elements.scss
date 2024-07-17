@@ -11,3 +11,12 @@ body {
   padding: 0;
   color: $color-primary;
 }
+
+.page-section {
+  padding-left: 16px;
+  padding-right: 16px;
+  @include respond-to(lg) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}

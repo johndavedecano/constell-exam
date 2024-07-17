@@ -1,5 +1,6 @@
 <template>
   <Wrapper>
+    <SideNav />
     <PageWrapper>
       <Header />
       <Main>

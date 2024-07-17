@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from "vue";
-
 import Icon from "./Icon.vue";
 
 type NewActionElement = "a" | "button";
@@ -8,13 +6,10 @@ type NewActionElement = "a" | "button";
 interface NewActionProps {
   label?: string;
   element?: NewActionElement;
+  href?: string;
 }
 
-const {
-  label = "Add New",
-  element = "a",
-  ...restProps
-} = defineProps<NewActionProps>();
+const { label = "Add New", element = "a" } = defineProps<NewActionProps>();
 
 const emit = defineEmits<{
   (e: "click"): void;
@@ -29,8 +24,8 @@ const onClick = () => emit("click");
       :is="element || 'a'"
       class="action-btn"
       @click="onClick"
-      v-bind="restProps"
       :aria-label="label"
+      :href="href"
     >
       <Icon name="add" /> <span>{{ label }}</span>
     </component>
