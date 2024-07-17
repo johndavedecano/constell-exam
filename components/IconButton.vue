@@ -3,7 +3,7 @@ import { defineProps, defineEmits, computed } from "vue";
 
 type IconElement = "a" | "button";
 
-type IconTheme = "primary" | "secondary";
+type IconTheme = "primary" | "secondary" | "transparent";
 
 interface IconProps {
   name: string;
@@ -31,12 +31,13 @@ const emit = defineEmits<{
 
 const onClick = () => emit("click");
 
-const iconsize = computed(() => `${size}px`);
+const btnsize = computed(() => `${size}px`);
 
 const classnames = reactive({
   "icon-btn": true,
   "icon-btn-primary": theme === "primary",
   "icon-btn-secondary": theme === "secondary",
+  "icon-btn-transparent": theme === "transparent",
 });
 </script>
 
@@ -50,30 +51,36 @@ const classnames = reactive({
     :title="title"
     tabindex="0"
   >
-    <Icon :name="name" color="white" />
+    <Icon :name="name" />
   </component>
 </template>
 
 <style lang="scss" scoped>
 .icon-btn {
-  width: v-bind(iconsize);
-  height: v-bind(iconsize);
-  min-width: v-bind(iconsize);
-  min-height: v-bind(iconsize);
+  width: v-bind(btnsize);
+  height: v-bind(btnsize);
+  min-width: v-bind(btnsize);
+  min-height: v-bind(btnsize);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   user-select: auto;
-  font-size: 150%;
-  color: $color-white;
+  font-size: 120%;
 }
 
 .icon-btn-primary {
   background-color: $color-primary;
+  color: $color-white;
 }
 
 .icon-btn-secondary {
   background-color: $color-secondary;
+  color: $color-white;
+}
+
+.icon-btn-transparent {
+  background-color: transparent;
+  color: $color-primary;
 }
 </style>

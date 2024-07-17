@@ -3,10 +3,9 @@ import { defineProps } from "vue";
 
 interface IconProps {
   name: string;
-  color?: string;
 }
 
-const { name, color = "#282829" } = defineProps<IconProps>();
+const { name } = defineProps<IconProps>();
 </script>
 
 <template>
@@ -15,7 +14,7 @@ const { name, color = "#282829" } = defineProps<IconProps>();
 
 <style lang="scss">
 .icon {
-  color: v-bind(color);
   font-size: inherit;
+  color: inherit;
 }
 </style>

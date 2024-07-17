@@ -1,6 +1,8 @@
-// Converts pixel values to rem units based on a base font size.
-@function rem($pixels) {
-  @return $pixels / 16px * 1rem;
+@use "sass:math";
+
+// Function for converting a px based font-size to rem.
+@function rem($size) {
+  @return math.div($size, 16px) * 1rem;
 }
 
 // Strips units from a numeric value.
