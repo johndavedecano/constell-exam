@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { User } from "~/types";
+import type { Team, User } from "~/types";
 
 const user: User = {
   iri: "/api/staff/1000",
