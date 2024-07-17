@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import type { Team, User } from "~/types";
 
+useHead({
+  title: "Constell - Home",
+});
+
 const user: User = {
   iri: "/api/staff/1000",
   id: 1000,

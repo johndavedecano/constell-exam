@@ -1,6 +1,23 @@
+<script setup lang="ts">
+const length = ref();
+
+const route = useRoute();
+
+watch(
+  () => route.fullPath,
+  () => {
+    length.value = window.history.length;
+  }
+);
+
+onMounted(() => {
+  length.value = window.history.length;
+});
+</script>
+
 <template>
   <header class="header">
-    <BackButton />
+    <BackButton v-if="length > 2" />
     <Spacer />
     <Brand />
     <Spacer />
@@ -17,6 +34,7 @@
   min-height: 56px;
   position: sticky;
   top: 0;
+  z-index: 100;
 
   @include respond-to(lg) {
     min-height: 60px;

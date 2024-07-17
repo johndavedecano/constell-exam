@@ -1,5 +1,5 @@
 <template>
-  <div class="mobile-nav">
+  <div class="mobile-nav animate__animated animate__fadeInDown">
     <div class="mobile-nav__inner">
       <a href="#" class="mobile-nav__btn">
         <EventsIconBig />

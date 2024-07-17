@@ -29,7 +29,7 @@ const user: User = {
 </script>
 
 <template>
-  <div class="contact-card-list">
+  <div class="contact-card-list animate__animated animate__fadeInDown">
     <slot />
   </div>
 </template>

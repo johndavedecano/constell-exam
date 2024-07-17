@@ -1,21 +1,19 @@
 <script lang="ts" setup>
 import type { User } from "~/types";
 
+const router = useRouter();
+
 interface ContactCardProps extends User {}
 
 const props = defineProps<{ user: ContactCardProps }>();
 
-const emit = defineEmits<{
-  (e: "click"): void;
-}>();
-
-const onClick = () => emit("click");
-
 const { user } = props;
+
+const onClick = () => router.push({ path: `/contacts/${user.id}` });
 </script>
 <template>
   <div class="contact-card">
-    <div class="contact-card__detail">
+    <div class="contact-card__detail" @click="onClick">
       <Avatar :initial="user.initials" :src="user.image" :size="24" />
       <div class="contact-card__info">
         <div class="contact-card__info__name">
@@ -53,7 +51,7 @@ const { user } = props;
         name="delete"
         theme="transparent"
         :size="16"
-        @click.prevent="onClick"
+        @click.prevent="() => {}"
       />
     </div>
   </div>
@@ -87,6 +85,7 @@ const { user } = props;
     align-items: center;
     flex: 1;
     gap: 16px;
+    cursor: pointer;
   }
 
   &__info {

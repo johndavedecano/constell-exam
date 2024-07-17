@@ -1,5 +1,5 @@
 <template>
-  <div class="team-card-list">
+  <div class="team-card-list animate__animated animate__fadeInDown">
     <slot />
   </div>
 </template>
