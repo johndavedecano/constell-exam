@@ -30,6 +30,19 @@
         </a>
       </li>
     </ul>
+    <Spacer />
+    <ul class="sidenav__menu">
+      <li class="sidenav__menu__li">
+        <a href="/">
+          <SearchIcon />
+        </a>
+      </li>
+      <li class="sidenav__menu__li">
+        <a href="/">
+          <HelpIcon />
+        </a>
+      </li>
+    </ul>
   </aside>
 </template>
 
@@ -42,6 +55,8 @@
   flex-direction: column;
   border-right: solid 1px $border;
   margin-left: -56px;
+  overflow-y: auto;
+  overflow-x: hidden;
   @include respond-to(lg) {
     display: flex;
     margin-left: 0px;

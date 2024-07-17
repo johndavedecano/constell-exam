@@ -7,5 +7,6 @@
         <slot />
       </Main>
     </PageWrapper>
+    <MobileNav />
   </Wrapper>
 </template>
