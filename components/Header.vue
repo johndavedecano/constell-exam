@@ -13,13 +13,18 @@ watch(
 onMounted(() => {
   length.value = window.history.length;
 });
+
+const title = usePageTitle();
 </script>
 
 <template>
   <header class="header">
     <BackButton v-if="length > 2" />
     <Spacer />
-    <Brand />
+    <div v-if="title && title !== ''" class="header__title">
+      {{ title }}
+    </div>
+    <Brand v-else />
     <Spacer />
     <IconButton element="button" name="more_vert" :size="40" />
   </header>
@@ -35,6 +40,19 @@ onMounted(() => {
   position: sticky;
   top: 0;
   z-index: 100;
+
+  &__title {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-white;
+    font-family: "Cormorant Infant", serif;
+
+    font-size: 26.78px;
+    font-weight: 600;
+  }
 
   @include respond-to(lg) {
     min-height: 60px;

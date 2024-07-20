@@ -3,7 +3,9 @@ import type { SelectOption } from "~/types";
 
 import PhoneInput from "~/components/PhoneInput.vue";
 
-const mobileNav = useMobileNav();
+useMobileNav(false);
+
+usePageTitle("Edit user");
 
 const router = useRouter();
 
@@ -26,14 +28,6 @@ const submitForm = () => {
   // submit the form!
   node.submit();
 };
-
-onMounted(() => {
-  mobileNav.value = false;
-});
-
-onBeforeUnmount(() => {
-  mobileNav.value = true;
-});
 </script>
 
 <template>
