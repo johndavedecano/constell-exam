@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Country } from "~/types";
 
-import { parsePhoneNumber } from "libphonenumber-js";
+import parsePhoneNumber from "libphonenumber-js";
 
 const props = defineProps({
   context: Object,
@@ -14,24 +14,28 @@ const phoneNumber = ref();
 const countryList: Country[] = countries;
 
 const onInput = () => {
-  const parsed = parsePhoneNumber(
-    `+${phoneNumber.value.value}${phoneNumberPrefix.value.value}`
-  );
+  try {
+    const parsed = parsePhoneNumber(
+      `+${phoneNumber.value.value}${phoneNumberPrefix.value.value}`
+    );
 
-  if (!parsed) return;
+    if (!parsed) throw new Error();
 
-  const nextValue = {
-    phoneNumber: phoneNumber.value.value,
-    phoneNumberPrefix: phoneNumberPrefix.value.value,
-  };
+    const nextValue = {
+      phoneNumber: phoneNumber.value.value,
+      phoneNumberPrefix: phoneNumberPrefix.value.value,
+    };
 
-  props.context?.node.input(nextValue);
+    props.context?.node.input(nextValue);
+  } catch (_error) {
+    props.context?.node.input(undefined);
+  }
 };
 
 watch(
   () => props.context?.value,
   (nextValue) => {
-    if (nextValue.phoneNumber && nextValue.phoneNumberPrefix) {
+    if (nextValue && nextValue.phoneNumber && nextValue.phoneNumberPrefix) {
       phoneNumber.value.value = nextValue.phoneNumber;
       phoneNumberPrefix.value.value = nextValue.phoneNumberPrefix;
     }
