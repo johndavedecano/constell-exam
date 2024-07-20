@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+const mobileNav = useMobileNav();
+</script>
+
 <template>
   <Wrapper>
     <ClientOnly>
@@ -8,7 +12,7 @@
           <slot />
         </Main>
       </PageWrapper>
-      <!-- <MobileNav /> -->
+      <MobileNav v-if="mobileNav" />
     </ClientOnly>
   </Wrapper>
 </template>

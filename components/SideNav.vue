@@ -1,46 +1,48 @@
 <template>
   <aside class="sidenav">
     <div class="sidenav__logo">
-      <Logo />
+      <NuxtLink to="/">
+        <Logo />
+      </NuxtLink>
     </div>
     <ul class="sidenav__menu">
       <li class="sidenav__menu__li">
-        <a href="/">
+        <NuxtLink to="/">
           <TodayIcon />
-        </a>
+        </NuxtLink>
       </li>
       <li class="sidenav__menu__li">
-        <a href="/">
+        <NuxtLink to="/">
           <EventsIcon />
-        </a>
+        </NuxtLink>
       </li>
       <li class="sidenav__menu__li">
-        <a href="/">
+        <NuxtLink to="/">
           <ContactsIcon />
-        </a>
+        </NuxtLink>
       </li>
       <li class="sidenav__menu__li">
-        <a href="/">
+        <NuxtLink to="/">
           <FinanceIcon />
-        </a>
+        </NuxtLink>
       </li>
       <li class="sidenav__menu__li">
-        <a href="/">
+        <NuxtLink to="/">
           <Icon name="home" />
-        </a>
+        </NuxtLink>
       </li>
     </ul>
     <Spacer />
     <ul class="sidenav__menu">
       <li class="sidenav__menu__li">
-        <a href="/">
+        <NuxtLink to="/">
           <SearchIcon />
-        </a>
+        </NuxtLink>
       </li>
       <li class="sidenav__menu__li">
-        <a href="/">
+        <NuxtLink to="/">
           <HelpIcon />
-        </a>
+        </NuxtLink>
       </li>
     </ul>
   </aside>
