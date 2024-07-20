@@ -9,13 +9,7 @@ interface AvatarProps {
   customClass?: string;
 }
 
-const {
-  src,
-  customClass = "",
-  initial = "",
-  color = "white",
-  size = 40,
-} = defineProps<AvatarProps>();
+const props = defineProps<AvatarProps>();
 
 const emit = defineEmits<{
   (e: "click"): void;
@@ -23,24 +17,36 @@ const emit = defineEmits<{
 
 const onClick = () => emit("click");
 
-const avatarsize = computed(() => `${size}px`);
-
-const source = computed(() => (src ? `url(${src})` : ""));
-
 const classnames = reactive({
   avatar: true,
-  ...(customClass ? { [customClass]: true } : {}),
-  "avatar-primary": color === "primary",
-  "avatar-white": color === "white",
-  "avatar-success": color === "success",
-  "avatar-error": color === "error",
-  "avatar-warning": color === "warning",
-  "avatar-info": color === "info",
+  ...(props.customClass ? { [props.customClass]: true } : {}),
+  "avatar-primary": props.color === "primary",
+  "avatar-white": props.color === "white",
+  "avatar-success": props.color === "success",
+  "avatar-error": props.color === "error",
+  "avatar-warning": props.color === "warning",
+  "avatar-info": props.color === "info",
+});
+
+const styles = computed(() => {
+  const values = {
+    "min-width": `${props.size}px`,
+    "min-height": `${props.size}px`,
+    "max-width": `${props.size}px`,
+    "max-height": `${props.size}px`,
+    "background-image": `url(${props.src})`,
+  };
+  return values;
 });
 </script>
 
 <template>
-  <div :class="classnames" v-text="src ? '' : initial" @click="onClick"></div>
+  <div
+    :style="styles"
+    :class="classnames"
+    v-text="src ? '' : initial"
+    @click="onClick"
+  ></div>
 </template>
 
 <style lang="scss" scoped>
@@ -52,11 +58,6 @@ const classnames = reactive({
   font-size: 10px;
   border: solid 1px;
   border-color: $color-primary;
-  min-width: v-bind(avatarsize);
-  min-height: v-bind(avatarsize);
-  max-width: v-bind(avatarsize);
-  max-height: v-bind(avatarsize);
-  background-image: v-bind(source);
   background-size: cover;
   background-position: center;
   border-radius: 50%;

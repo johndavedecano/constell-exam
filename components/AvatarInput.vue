@@ -1,13 +1,32 @@
+<script lang="ts" setup>
+const props = defineProps(["src"]);
+
+const src = ref();
+
+const onFileChange = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  const file = (target.files || [])[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      src.value = String(reader.result);
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+onMounted(() => (src.value = props.src));
+</script>
+
 <template>
   <div class="avatar-input">
-    <Avatar
-      src="https://mighty.tools/mockmind-api/content/human/44.jpg"
-      :size="72"
-      color="primary"
-      initial="JD"
-    />
+    <Avatar :src="src" :size="72" color="primary" initial="JD" />
     <button class="avatar-input__btn">
-      <input type="file" accept="image/x-png,image/jpeg" />
+      <input
+        type="file"
+        accept="image/x-png,image/jpeg"
+        @change="onFileChange"
+      />
       <Icon name="edit" />
     </button>
   </div>
