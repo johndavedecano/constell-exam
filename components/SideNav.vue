@@ -57,6 +57,7 @@
   margin-left: -56px;
   overflow-y: auto;
   overflow-x: hidden;
+  z-index: 300;
   @include respond-to(lg) {
     display: flex;
     margin-left: 0px;

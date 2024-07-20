@@ -34,3 +34,14 @@ export interface User {
   functionName: string;
   userPermissions: string[];
 }
+
+export interface Country {
+  country: string;
+  code: string;
+  iso: string;
+}
+
+export type SelectOption = {
+  label: string;
+  value: number | string;
+};

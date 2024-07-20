@@ -8,7 +8,7 @@
           <slot />
         </Main>
       </PageWrapper>
-      <MobileNav />
+      <!-- <MobileNav /> -->
     </ClientOnly>
   </Wrapper>
 </template>

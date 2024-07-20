@@ -68,6 +68,7 @@ const onClick = () => router.push({ path: `/contacts/${user.id}` });
   background-color: $color-gray-mild;
   border-radius: $border-radius;
   border: solid 1px $border;
+  overflow: hidden;
 
   .stack {
     margin-left: -10px;
@@ -90,12 +91,16 @@ const onClick = () => router.push({ path: `/contacts/${user.id}` });
 
   &__info {
     flex: 1;
+    overflow: hidden;
 
     &__name {
       font-size: 11.22px;
       font-weight: 500;
       line-height: 16.83px;
       text-align: left;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     &__role {
@@ -103,6 +108,9 @@ const onClick = () => router.push({ path: `/contacts/${user.id}` });
       font-weight: 300;
       line-height: 16.83px;
       text-align: left;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     &__phone {
@@ -110,6 +118,9 @@ const onClick = () => router.push({ path: `/contacts/${user.id}` });
       font-weight: 300;
       line-height: 16.83px;
       text-align: left;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 

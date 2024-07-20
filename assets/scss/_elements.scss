@@ -24,16 +24,33 @@ body {
 .form-col {
   display: flex;
   gap: 16px;
+  &--stacked {
+    flex-direction: column;
+  }
+}
+
+.form-outer {
+  flex: 1;
+  margin-bottom: 24px;
+
+  &--margin-sm {
+    margin-bottom: 8px;
+  }
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
   flex: 1;
 }
 
-.form-group label {
+.form-inner {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.form-label {
   display: flex;
   align-items: center;
   line-height: 24px;
@@ -43,6 +60,7 @@ body {
 }
 
 .form-control {
+  width: 100%;
   font-size: 12.77px;
   font-weight: 300;
   text-align: left;
@@ -55,5 +73,42 @@ body {
   min-width: 0;
   &:focus {
     background-color: $color-white;
+  }
+}
+
+.form-help {
+  font-size: 10px;
+  font-weight: 300;
+  color: $text-muted;
+  display: block;
+  padding-top: 5px;
+}
+
+.btn {
+  border: solid 1px;
+  font-size: 12.77px;
+  font-weight: 500;
+  border-radius: 24px;
+  width: 100%;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &-outer {
+    display: flex;
+    flex: 1;
+  }
+
+  &__submit {
+    background-color: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+  }
+
+  &__cancel {
+    background-color: $color-white;
+    color: $color-primary;
+    border-color: $border;
   }
 }

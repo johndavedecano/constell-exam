@@ -45,12 +45,16 @@ const onClick = () => emit("click");
   background-color: $color-gray-mild;
   border-radius: $border-radius;
   box-shadow: $box-shadow;
+  overflow: hidden;
 
   &__title {
     font-size: 12.77px;
     font-weight: 500;
     line-height: 19.15px;
     text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &__detail {

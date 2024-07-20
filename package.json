@@ -13,6 +13,7 @@
   "dependencies": {
     "@formkit/nuxt": "^1.6.5",
     "@pinia/nuxt": "^0.5.1",
+    "libphonenumber-js": "^1.11.4",
     "nuxt": "^3.12.3",
     "pinia": "^2.1.7",
     "vue": "latest"
