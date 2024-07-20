@@ -14,7 +14,16 @@ const optionCountries: SelectOption[] = countries.map((v) => ({
   value: v.iso,
 }));
 
+const userForm = ref();
+
 const phone = createInput(PhoneInput);
+
+const submitForm = () => {
+  // retrieve the core node (several ways to do this):
+  const node = userForm.value.node;
+  // submit the form!
+  node.submit();
+};
 </script>
 
 <template>
@@ -24,23 +33,39 @@ const phone = createInput(PhoneInput);
         <div class="user-detail__avatar">
           <AvatarInput />
         </div>
-        <FormKit type="form" form-class="user-detail__form" :actions="false">
+        <FormKit
+          type="form"
+          ref="userForm"
+          form-class="user-detail__form"
+          :actions="false"
+        >
           <div class="form-col">
             <FormKit
               label="Your name *"
+              name="name"
               type="text"
-              validation="required|email"
+              validation="required"
             />
-            <FormKit label="Initials" type="text" validation="required" />
+            <FormKit
+              label="Initials"
+              name="initials"
+              type="text"
+              validation="required"
+            />
           </div>
           <div class="form-col">
-            <FormKit label="Display name" type="text" />
+            <FormKit name="display_name" label="Display name" type="text" />
           </div>
           <div class="form-col">
-            <FormKit label="Role" type="text" />
+            <FormKit name="role" label="Role" type="text" />
           </div>
           <div class="user-detail__email-col">
-            <FormKit label="Email" type="email" />
+            <FormKit
+              name="email"
+              label="Email"
+              type="email"
+              validation="required|email"
+            />
             <FormKit
               :type="phone"
               label="Phone"
@@ -52,6 +77,7 @@ const phone = createInput(PhoneInput);
             <FormKit
               label="Street"
               type="text"
+              name="street_1"
               outer-class="$reset form-outer--margin-sm"
             />
             <FormKit type="text" />
@@ -81,6 +107,7 @@ const phone = createInput(PhoneInput);
                 label="Submit"
                 input-class="$reset btn btn__submit"
                 outer-class="$reset btn-outer"
+                @click="submitForm"
               />
             </div>
           </div>

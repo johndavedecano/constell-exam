@@ -1,30 +1,37 @@
 <script lang="ts" setup>
 import type { Country } from "~/types";
 
-import parsePhoneNumber from "libphonenumber-js";
+import { parsePhoneNumber } from "libphonenumber-js";
 
 const props = defineProps({
   context: Object,
 });
 
-const countryCode = ref();
+const phoneNumberPrefix = ref();
 
 const phoneNumber = ref();
 
 const countryList: Country[] = countries;
 
 const onInput = () => {
-  const value = `+${countryCode.value.value}${phoneNumber.value.value}`;
-  // const parsed = parsePhoneNumber(value);
-  props.context?.node.input(value);
+  const parsed = `+${phoneNumber.value.value}${phoneNumberPrefix.value.value}`;
+
+  if (!parsed) return;
+
+  const nextValue = {
+    phoneNumber: phoneNumber.value.value,
+    phoneNumberPrefix: phoneNumberPrefix.value.value,
+  };
+
+  props.context?.node.input(nextValue);
 };
 
 watch(
   () => props.context?.value,
   (nextValue) => {
-    const parsed = parsePhoneNumber(nextValue);
-    if (parsed) {
-      console.log(parsed);
+    if (nextValue.phoneNumber && nextValue.phoneNumberPrefix) {
+      phoneNumber.value.value = nextValue.phoneNumber;
+      phoneNumberPrefix.value.value = nextValue.phoneNumberPrefix;
     }
   }
 );
@@ -32,7 +39,7 @@ watch(
 
 <template>
   <div class="phone-input">
-    <select class="phone-input__select" ref="countryCode">
+    <select class="phone-input__select" ref="phoneNumberPrefix">
       <option
         v-for="country in countryList"
         :key="country.code"

@@ -76,6 +76,18 @@ body {
   }
 }
 
+.formkit-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.formkit-message {
+  font-size: 10px;
+  font-weight: 300;
+  color: $color-validation-error;
+}
+
 .form-help {
   font-size: 10px;
   font-weight: 300;
