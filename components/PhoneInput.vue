@@ -14,7 +14,9 @@ const phoneNumber = ref();
 const countryList: Country[] = countries;
 
 const onInput = () => {
-  const parsed = `+${phoneNumber.value.value}${phoneNumberPrefix.value.value}`;
+  const parsed = parsePhoneNumber(
+    `+${phoneNumber.value.value}${phoneNumberPrefix.value.value}`
+  );
 
   if (!parsed) return;
 

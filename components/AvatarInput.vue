@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-const props = defineProps(["src"]);
+const props = defineProps({
+  context: Object,
+});
 
 const src = ref();
 
@@ -10,12 +12,17 @@ const onFileChange = (event: Event) => {
     const reader = new FileReader();
     reader.onload = () => {
       src.value = String(reader.result);
+      props.context?.node.input(src.value);
     };
     reader.readAsDataURL(file);
   }
 };
 
-onMounted(() => (src.value = props.src));
+onMounted(() => {
+  if (props.context?.value) {
+    src.value = props.context?.value;
+  }
+});
 </script>
 
 <template>
