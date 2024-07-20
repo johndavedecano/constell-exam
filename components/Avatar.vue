@@ -9,6 +9,8 @@ interface AvatarProps {
   customClass?: string;
 }
 
+const base: number = 24;
+
 const props = defineProps<AvatarProps>();
 
 const emit = defineEmits<{
@@ -28,14 +30,15 @@ const classnames = reactive({
   "avatar-info": props.color === "info",
 });
 
+const size = computed(() => `${props.size || base}px`);
+
 const styles = computed(() => {
-  const values = {
-    "min-width": `${props.size}px`,
-    "min-height": `${props.size}px`,
-    "max-width": `${props.size}px`,
-    "max-height": `${props.size}px`,
-    "background-image": `url(${props.src})`,
-  };
+  const values: { "background-image"?: string } = {};
+
+  if (props.src) {
+    values["background-image"] = `url(${props.src})`;
+  }
+
   return values;
 });
 </script>
@@ -62,7 +65,10 @@ const styles = computed(() => {
   background-position: center;
   border-radius: 50%;
   letter-spacing: 1px;
-
+  min-width: v-bind(size);
+  min-height: v-bind(size);
+  max-width: v-bind(size);
+  max-height: v-bind(size);
   background-color: $color-white;
   color: $text-body;
 }

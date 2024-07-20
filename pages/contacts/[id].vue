@@ -3,6 +3,8 @@ import type { SelectOption } from "~/types";
 
 import PhoneInput from "~/components/PhoneInput.vue";
 
+const router = useRouter();
+
 useHead({
   title: "Constell - Contact Editor",
 });
@@ -24,8 +26,12 @@ const phone = createInput(PhoneInput);
         </div>
         <FormKit type="form" form-class="user-detail__form" :actions="false">
           <div class="form-col">
-            <FormKit label="Your name *" type="text" />
-            <FormKit label="Initials" type="text" required />
+            <FormKit
+              label="Your name *"
+              type="text"
+              validation="required|email"
+            />
+            <FormKit label="Initials" type="text" validation="required" />
           </div>
           <div class="form-col">
             <FormKit label="Display name" type="text" />
@@ -66,6 +72,7 @@ const phone = createInput(PhoneInput);
                 label="Cancel"
                 input-class="$reset btn btn__cancel"
                 outer-class="$reset btn-outer"
+                @click.prevent="$router.back()"
               />
             </div>
             <div class="user-detail__form-actions-col">
