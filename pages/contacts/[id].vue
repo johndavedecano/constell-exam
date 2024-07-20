@@ -18,12 +18,7 @@ const optionCountries: SelectOption[] = countries.map((v) => ({
     <div class="page-section">
       <div class="user-detail">
         <div class="user-detail__avatar">
-          <Avatar
-            src="https://mighty.tools/mockmind-api/content/human/44.jpg"
-            :size="72"
-            color="primary"
-            initial="JD"
-          />
+          <AvatarInput />
         </div>
         <FormKit type="form" form-class="user-detail__form" :actions="false">
           <div class="form-col">
@@ -62,6 +57,7 @@ const optionCountries: SelectOption[] = countries.map((v) => ({
           </div>
 
           <div class="user-detail__form-actions">
+            <div class="user-detail__form-actions-spacer"></div>
             <div class="user-detail__form-actions-col">
               <FormKit
                 type="button"
@@ -112,13 +108,32 @@ const optionCountries: SelectOption[] = countries.map((v) => ({
     right: 0;
     bottom: 0;
 
+    @include respond-to(xl) {
+      border: none;
+      max-width: 1200px;
+      margin: auto;
+      justify-content: flex-end;
+    }
+
     background-color: $bg-body;
     border-top: solid 1px $border;
+
+    &-spacer {
+      display: none;
+      flex: 1;
+      @include respond-to(xl) {
+        display: block;
+      }
+    }
 
     &-col {
       flex: 1;
       display: flex;
       align-items: center;
+      @include respond-to(xl) {
+        flex: none;
+        width: 217px;
+      }
     }
 
     @include respond-to(lg) {
