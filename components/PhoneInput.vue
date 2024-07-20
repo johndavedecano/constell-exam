@@ -1,28 +1,52 @@
 <script lang="ts" setup>
 import type { Country } from "~/types";
 
+import parsePhoneNumber from "libphonenumber-js";
+
+const props = defineProps({
+  context: Object,
+});
+
+const countryCode = ref();
+
+const phoneNumber = ref();
+
 const countryList: Country[] = countries;
 
-const countryCode = ref("31");
+const onInput = () => {
+  const value = `+${countryCode.value.value}${phoneNumber.value.value}`;
+  // const parsed = parsePhoneNumber(value);
+  props.context?.node.input(value);
+};
 
-const partialNumber = ref();
+watch(
+  () => props.context?.value,
+  (nextValue) => {
+    const parsed = parsePhoneNumber(nextValue);
+    if (parsed) {
+      console.log(parsed);
+    }
+  }
+);
 </script>
 
 <template>
   <div class="phone-input">
-    <select class="phone-input__select" v-model="countryCode">
+    <select class="phone-input__select" ref="countryCode">
       <option
         v-for="country in countryList"
         :key="country.code"
         :value="country.code"
         v-text="`+${country.code}`"
+        @input="onInput"
       ></option>
     </select>
     <input
+      ref="phoneNumber"
       type="text"
-      v-model="partialNumber"
       class="phone-input__input"
       name="phone_number"
+      @input="onInput"
     />
   </div>
 </template>

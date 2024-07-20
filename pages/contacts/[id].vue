@@ -11,6 +11,8 @@ const optionCountries: SelectOption[] = countries.map((v) => ({
   label: v.country,
   value: v.iso,
 }));
+
+const phone = createInput(PhoneInput);
 </script>
 
 <template>
@@ -23,7 +25,7 @@ const optionCountries: SelectOption[] = countries.map((v) => ({
         <FormKit type="form" form-class="user-detail__form" :actions="false">
           <div class="form-col">
             <FormKit label="Your name *" type="text" />
-            <FormKit label="Initials" type="text" />
+            <FormKit label="Initials" type="text" required />
           </div>
           <div class="form-col">
             <FormKit label="Display name" type="text" />
@@ -33,12 +35,12 @@ const optionCountries: SelectOption[] = countries.map((v) => ({
           </div>
           <div class="user-detail__email-col">
             <FormKit label="Email" type="email" />
-            <div class="form-outer">
-              <div class="form-group">
-                <label for="" class="form-label">Phone number</label>
-                <PhoneInput />
-              </div>
-            </div>
+            <FormKit
+              :type="phone"
+              label="Phone"
+              name="phone"
+              validation="required"
+            />
           </div>
           <div class="form-col--stacked">
             <FormKit
