@@ -16,7 +16,9 @@ const onClick = () => emit("click");
     <div class="team-card__detail">
       <Avatar :initial="team.abbreviation" :color="team.color" />
       <a
-        :href="team.iri"
+        href="#"
+        :title="team.name"
+        :arial-label="team.name"
         class="team-card__title"
         v-text="team.name"
         @click.prevent="onClick"

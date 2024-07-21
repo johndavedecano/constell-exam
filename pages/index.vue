@@ -2,8 +2,11 @@
 import { useModal } from "vue-final-modal";
 
 import TeamModal from "~/components/TeamModal.vue";
+import type { Team } from "~/types";
 
-import type { Team, User } from "~/types/index";
+const teamStore = useTeamStore();
+
+const teams: ComputedRef<Team[]> = computed(() => teamStore.items);
 
 useHead({
   title: "Constell - Home",
@@ -11,10 +14,29 @@ useHead({
 
 const teamModal = useModal({
   component: TeamModal,
-  attrs: {},
+  attrs: {
+    onClose() {
+      teamModal.close();
+    },
+    async onSubmit(fields) {
+      try {
+        await teamStore.create(fields);
+
+        await teamStore.fetch({ limit: 100000, skip: 0 });
+
+        teamModal.close();
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
 });
 
 const onTeamAdd = () => teamModal.open();
+
+onMounted(() => {
+  teamStore.fetch({ limit: 12, skip: 0 });
+});
 </script>
 
 <template>
@@ -23,7 +45,9 @@ const onTeamAdd = () => teamModal.open();
     <div class="page-section">
       <SectionTitle title="Teams" />
     </div>
-    <TeamCardList> </TeamCardList>
+    <TeamCardList>
+      <TeamCard v-for="team in teams" :team="team" :key="team._id" />
+    </TeamCardList>
     <div class="page-section">
       <NewAction label="New Team" @click="onTeamAdd" />
     </div>

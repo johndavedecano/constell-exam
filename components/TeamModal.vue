@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const teamForm = ref();
 
+const props = { id: "", name: "", abbreviation: "", color: "" };
+
 const emit = defineEmits(["close", "submit"]);
 
 const validateForm = () => {
@@ -10,7 +12,7 @@ const validateForm = () => {
   node.submit();
 };
 
-const submitForm = () => {};
+const submitForm = (fields = {}) => emit("submit", { ...fields, id: props.id });
 </script>
 
 <template>
@@ -30,6 +32,7 @@ const submitForm = () => {};
             name="name"
             type="text"
             validation="required"
+            :value="props.name"
           />
         </div>
         <div class="form-col">
@@ -38,12 +41,14 @@ const submitForm = () => {};
             name="color"
             type="color"
             validation="required"
+            :value="props.color"
           />
           <FormKit
             label="Abbreviation *"
             name="abbreviation"
             type="text"
             validation="required"
+            :value="props.abbreviation"
           />
         </div>
         <div class="form-col">

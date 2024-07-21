@@ -22,21 +22,20 @@ const onClick = () => emit("click");
 const classnames = reactive({
   avatar: true,
   ...(props.customClass ? { [props.customClass]: true } : {}),
-  "avatar-primary": props.color === "primary",
-  "avatar-white": props.color === "white",
-  "avatar-success": props.color === "success",
-  "avatar-error": props.color === "error",
-  "avatar-warning": props.color === "warning",
-  "avatar-info": props.color === "info",
 });
 
 const size = computed(() => `${props.size || base}px`);
 
 const styles = computed(() => {
-  const values: { "background-image"?: string } = {};
+  const values: { "background-image"?: string; "background-color"?: string } =
+    {};
 
   if (props.src) {
     values["background-image"] = `url(${props.src})`;
+  }
+
+  if (props.color) {
+    values["background-color"] = props.color;
   }
 
   return values;

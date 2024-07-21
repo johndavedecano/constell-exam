@@ -1,6 +1,4 @@
 export interface UserAddress {
-  iri?: string;
-  id?: number;
   addressLineOne: string;
   addressLineTwo: string;
   city: string;
@@ -10,8 +8,7 @@ export interface UserAddress {
 }
 
 export interface Team {
-  iri: string;
-  id: number;
+  _id: string;
   name: string;
   color: string;
   abbreviation: string;
@@ -19,8 +16,7 @@ export interface Team {
 }
 
 export interface User {
-  iri?: string;
-  id?: number;
+  _id: string;
   fullName: string;
   displayName: string;
   initials: string;
