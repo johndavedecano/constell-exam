@@ -1,6 +1,6 @@
 export interface UserAddress {
-  iri: string;
-  id: number;
+  iri?: string;
+  id?: number;
   addressLineOne: string;
   addressLineTwo: string;
   city: string;
@@ -27,7 +27,7 @@ export interface User {
   email: string;
   phoneNumber: string;
   phoneCountryPrefix: string;
-  teamIds: number[];
+  teamIds: string[];
   image: string;
   address?: UserAddress;
   isEmployee: boolean;
