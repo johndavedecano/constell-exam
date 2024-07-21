@@ -38,7 +38,7 @@ const submitForm = (fields = {}) => {
             name="name"
             type="text"
             validation="required"
-            v-model="props.name"
+            :value="props.name"
           />
         </div>
         <div class="form-col">
@@ -48,7 +48,7 @@ const submitForm = (fields = {}) => {
             name="color"
             type="color"
             validation="required"
-            v-model="props.color"
+            :value="props.color"
           />
           <FormKit
             label="Abbreviation *"
@@ -56,7 +56,7 @@ const submitForm = (fields = {}) => {
             name="abbreviation"
             type="text"
             validation="required"
-            v-model="props.abbreviation"
+            :value="props.abbreviation"
           />
         </div>
         <div class="form-col">

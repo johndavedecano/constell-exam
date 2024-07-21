@@ -43,7 +43,12 @@ const teamModal = useModal({
   },
 });
 
-const onTeamAdd = () => teamModal.open();
+const onTeamAdd = () => {
+  teamModal.patchOptions({
+    attrs: {},
+  });
+  teamModal.open();
+};
 
 const onTeamEdit = (team: Team) => {
   teamModal.patchOptions({
