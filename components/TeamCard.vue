@@ -14,7 +14,7 @@ const onClick = (): void => {
 <template>
   <div class="team-card">
     <div class="team-card__detail">
-      <Avatar :initial="team.abbreviation" :color="team.color" />
+      <Avatar :initial="team.abbreviation" :color="team.color" :size="40" />
       <a
         href="#"
         :title="team.name"
