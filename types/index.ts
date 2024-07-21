@@ -21,8 +21,8 @@ export interface User {
   displayName: string;
   initials: string;
   email: string;
-  phoneNumber: string;
-  phoneCountryPrefix: string;
+  phoneNumber: number;
+  phoneCountryPrefix: number;
   teamIds: string[];
   image: string;
   address?: UserAddress;

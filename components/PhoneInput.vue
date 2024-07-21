@@ -7,23 +7,24 @@ const props = defineProps({
   context: Object,
 });
 
-const phoneNumberPrefix = ref();
-
-const phoneNumber = ref();
+const values = reactive({
+  phoneCountryPrefix: "",
+  phoneNumber: "",
+});
 
 const countryList: Country[] = countries;
 
 const onInput = () => {
   try {
     const parsed = parsePhoneNumber(
-      `+${phoneNumber.value.value}${phoneNumberPrefix.value.value}`
+      `+${values.phoneCountryPrefix}${values.phoneNumber}`
     );
 
     if (!parsed) throw new Error();
 
     const nextValue = {
-      phoneNumber: phoneNumber.value.value,
-      phoneNumberPrefix: phoneNumberPrefix.value.value,
+      phoneNumber: values.phoneNumber,
+      phoneCountryPrefix: values.phoneCountryPrefix,
     };
 
     props.context?.node.input(nextValue);
@@ -32,20 +33,17 @@ const onInput = () => {
   }
 };
 
-watch(
-  () => props.context?.value,
-  (nextValue) => {
-    if (nextValue && nextValue.phoneNumber && nextValue.phoneNumberPrefix) {
-      phoneNumber.value.value = nextValue.phoneNumber;
-      phoneNumberPrefix.value.value = nextValue.phoneNumberPrefix;
-    }
-  }
-);
+onMounted(() => {
+  const nextValue = props.context?.value;
+  values.phoneNumber = nextValue.phoneNumber;
+  values.phoneCountryPrefix = nextValue.phoneCountryPrefix;
+  console.log(values);
+});
 </script>
 
 <template>
   <div class="phone-input">
-    <select class="phone-input__select" ref="phoneNumberPrefix">
+    <select class="phone-input__select" :value="values.phoneCountryPrefix">
       <option
         v-for="country in countryList"
         :key="country.code"
@@ -55,7 +53,7 @@ watch(
       ></option>
     </select>
     <input
-      ref="phoneNumber"
+      v-model="values.phoneNumber"
       type="text"
       class="phone-input__input"
       name="phone_number"

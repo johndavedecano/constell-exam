@@ -11,6 +11,8 @@ const teamStore = useTeamStore();
 
 const teams: ComputedRef<Team[]> = computed(() => teamStore.items);
 
+const router = useRouter();
+
 useHead({
   title: "Constell - Home",
 });
@@ -87,7 +89,10 @@ onMounted(() => {
     </div>
     <ContactCardList> </ContactCardList>
     <div class="page-section">
-      <NewAction label="New User" />
+      <NewAction
+        label="New User"
+        @click="() => $router.push('/contacts/new')"
+      />
     </div>
     <div class="pt32"></div>
   </Container>

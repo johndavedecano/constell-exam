@@ -44,6 +44,8 @@ onMounted(() => {
   display: flex;
   position: relative;
   height: 72px;
+  width: 72px;
+  margin: auto;
 
   input[type="file"] {
     width: 30px;

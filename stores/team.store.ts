@@ -55,17 +55,11 @@ export const useTeamStore = defineStore("team", () => {
     }
   };
 
-  const show = async (id: string) => {};
-
-  const destroy = async (id: string) => {};
-
   return {
     items,
     loading,
     fetch,
     create,
     update,
-    show,
-    destroy,
   };
 });

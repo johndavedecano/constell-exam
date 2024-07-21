@@ -9,7 +9,7 @@ const props = defineProps<{ user: ContactCardProps }>();
 
 const { user } = props;
 
-const onClick = () => router.push({ path: `/contacts/${user.id}` });
+const onClick = () => router.push({ path: `/contacts/${user._id}` });
 </script>
 <template>
   <div class="contact-card">
