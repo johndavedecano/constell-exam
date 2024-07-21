@@ -45,3 +45,8 @@ export type SelectOption = {
   label: string;
   value: number | string;
 };
+
+export type QueryFilter = {
+  skip: number;
+  limit: number;
+};

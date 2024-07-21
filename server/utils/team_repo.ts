@@ -2,12 +2,7 @@ import { Team } from "~/types";
 
 import db from "./db";
 
-export type QueryFilter = {
-  skip: number;
-  limit: number;
-};
-
-export const fetchTeam = (filter: QueryFilter): Promise<Team[]> => {
+const fetchTeam = (filter: QueryFilter): Promise<Team[]> => {
   return new Promise((resolve, reject) => {
     db.team
       ?.find({})
@@ -20,7 +15,7 @@ export const fetchTeam = (filter: QueryFilter): Promise<Team[]> => {
   });
 };
 
-export const findById = (id: string | number): Promise<Team> => {
+const findById = (id: string | number): Promise<Team> => {
   return new Promise((resolve, reject) => {
     db.team?.findOne({ _id: id }, (err: Error, doc: Team) => {
       if (err) return reject(err);
@@ -29,15 +24,15 @@ export const findById = (id: string | number): Promise<Team> => {
   });
 };
 
-export const insert = (user: Partial<Team>) => {
+const insert = (user: Partial<Team>) => {
   return db.team?.insert(user);
 };
 
-export const remove = (id: string | number) => {
+const remove = (id: string | number) => {
   return db.team?.remove(id);
 };
 
-export const update = (id: string | number, user: Partial<Team>) => {
+const update = (id: string | number, user: Partial<Team>) => {
   return db.team?.update({ _id: id }, user);
 };
 

@@ -3,9 +3,9 @@ import { z } from "zod";
 
 import _ from "lodash";
 
+import { User } from "~/types";
 import StaffRepo from "~/server/utils/staff_repo";
 import validate from "~/server/utils/validation";
-import { User } from "~/types";
 
 /**
  * List staff from the database

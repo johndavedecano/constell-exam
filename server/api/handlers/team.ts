@@ -1,5 +1,6 @@
 import { defineEventHandler } from "h3";
 import { z } from "zod";
+
 import _ from "lodash";
 
 import { Team } from "~/types";
@@ -36,27 +37,10 @@ export const storeTeamHandler = defineEventHandler(async (event) => {
 
     const schema = z.object({
       iri: z.string().optional(),
-      fullName: z.string(),
-      displayName: z.string(),
-      initials: z.string(),
-      email: z.string().email(),
-      phoneNumber: z.number().optional(),
-      phoneCountryPrefix: z.number().optional(),
-      teamIds: z.array(z.string()).optional(),
-      image: z.string().optional(),
-      address: z
-        .object({
-          addressLineOne: z.string(),
-          addressLineTwo: z.string(),
-          city: z.string(),
-          country: z.string(),
-          postalCode: z.string(),
-          state: z.string(),
-        })
-        .optional(),
-      isEmployee: z.boolean().default(true),
-      functionName: z.string().optional(),
-      userPermissions: z.array(z.string()).optional(),
+      name: z.string(),
+      color: z.string(),
+      abbreviation: z.string(),
+      teamPermissions: z.array(z.string()).optional(),
     });
 
     const validation = await validate(event, schema);
@@ -103,27 +87,10 @@ export const updateTeamHandler = defineEventHandler(async (event) => {
 
     const schema = z.object({
       iri: z.string().optional(),
-      fullName: z.string(),
-      displayName: z.string(),
-      initials: z.string(),
-      email: z.string().email(),
-      phoneNumber: z.number().optional(),
-      phoneCountryPrefix: z.number().optional(),
-      teamIds: z.array(z.string()).optional(),
-      image: z.string().optional(),
-      address: z
-        .object({
-          addressLineOne: z.string(),
-          addressLineTwo: z.string(),
-          city: z.string(),
-          country: z.string(),
-          postalCode: z.string(),
-          state: z.string(),
-        })
-        .optional(),
-      isEmployee: z.boolean().default(true),
-      functionName: z.string().optional(),
-      userPermissions: z.array(z.string()).optional(),
+      name: z.string(),
+      color: z.string(),
+      abbreviation: z.string(),
+      teamPermissions: z.array(z.string()).optional(),
     });
 
     const validation = await validate(event, schema);
@@ -133,11 +100,11 @@ export const updateTeamHandler = defineEventHandler(async (event) => {
       return { message: validation.message };
     }
 
-    const user: Partial<Team> = _.merge(results, body);
+    const team: Partial<Team> = _.merge(results, body);
 
-    await TeamRepo.update(String(teamId), user);
+    await TeamRepo.update(String(teamId), team);
 
-    return user;
+    return team;
   } catch (err) {
     setResponseStatus(event, 500);
     return {
