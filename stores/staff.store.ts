@@ -88,6 +88,7 @@ export const useStaffStore = defineStore("staff", () => {
   return {
     items,
     loading,
+    contact,
     fetch,
     create,
     update,

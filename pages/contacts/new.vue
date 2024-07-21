@@ -16,23 +16,23 @@ const staffStore = useStaffStore();
 const router = useRouter();
 
 const user = {
-  fullName: "John Dave Decano",
-  displayName: "Dave",
-  initials: "J.D.D",
-  email: "johndavedecano@gmail.com",
-  phoneNumber: 645046370,
-  phoneCountryPrefix: 31,
-  image: "https://mighty.tools/mockmind-api/content/human/65.jpg",
-  isEmployee: true,
-  functionName: "Software Engineer",
-  address: {
-    addressLineOne: "Walenburgstraat 3",
-    addressLineTwo: "",
-    city: "Breda",
-    country: "NL",
-    postalCode: "4834RK",
-    state: "North Brabant",
-  },
+  // fullName: "John Dave Decano",
+  // displayName: "Dave",
+  // initials: "J.D.D",
+  // email: "johndavedecano@gmail.com",
+  // phoneNumber: 645046370,
+  // phoneCountryPrefix: 31,
+  // image: "https://mighty.tools/mockmind-api/content/human/65.jpg",
+  // isEmployee: true,
+  // functionName: "Software Engineer",
+  // address: {
+  //   addressLineOne: "Walenburgstraat 3",
+  //   addressLineTwo: "",
+  //   city: "Breda",
+  //   country: "NL",
+  //   postalCode: "4834RK",
+  //   state: "North Brabant",
+  // },
 };
 
 const onCreateNew = async (fields = {}) => {
