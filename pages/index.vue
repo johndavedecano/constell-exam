@@ -7,6 +7,8 @@ import TeamModal from "~/components/TeamModal.vue";
 
 import type { Team, User } from "~/types";
 
+useMobileNav(true);
+
 const teamStore = useTeamStore();
 const staffStore = useStaffStore();
 
