@@ -148,7 +148,7 @@ const validateForm = () => {
               label="Cancel"
               input-class="$reset btn btn__cancel"
               outer-class="$reset btn-outer"
-              @click.prevent="$router.back()"
+              @click.prevent="$router.replace('/contacts')"
             />
           </div>
           <div class="user-detail__form-actions-col">

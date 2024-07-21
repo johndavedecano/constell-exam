@@ -10,7 +10,7 @@ export const useMobileNav = (value?: boolean) => {
   return val;
 };
 
-export const usePageTitle = (value?: string) => {
+export const usePageTitle = (value?: string | undefined) => {
   const val = useState("page_title");
 
   onMounted(() => {

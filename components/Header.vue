@@ -21,7 +21,7 @@ const title = usePageTitle();
   <header class="header">
     <BackButton v-if="length > 2" />
     <Spacer />
-    <div v-if="title && title !== ''" class="header__title">
+    <div v-if="title !== undefined" class="header__title">
       {{ title }}
     </div>
     <Brand v-else />
