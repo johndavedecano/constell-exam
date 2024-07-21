@@ -73,6 +73,9 @@ const submitForm = (fields = {}) => emit("submit", { ...fields, id: props.id });
 </template>
 
 <style lang="scss" scoped>
+.team-modal {
+  min-height: 284px;
+}
 .title {
   flex: 1;
   text-align: center;
