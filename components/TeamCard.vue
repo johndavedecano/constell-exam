@@ -5,11 +5,11 @@ interface TeamCardProps extends Team {}
 
 const { team } = defineProps<{ team: TeamCardProps }>();
 
-const emit = defineEmits<{
-  (e: "click"): void;
-}>();
+const emit = defineEmits(["click"]);
 
-const onClick = () => emit("click");
+const onClick = (): void => {
+  emit("click");
+};
 </script>
 <template>
   <div class="team-card">
@@ -30,7 +30,7 @@ const onClick = () => emit("click");
         name="edit"
         theme="transparent"
         :size="16"
-        @click.prevent="onClick"
+        @click="onClick"
       />
     </div>
   </div>

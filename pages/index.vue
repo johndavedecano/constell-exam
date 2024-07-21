@@ -2,7 +2,10 @@
 import { useModal } from "vue-final-modal";
 
 import TeamModal from "~/components/TeamModal.vue";
+
 import type { Team } from "~/types";
+
+import _ from "lodash";
 
 const teamStore = useTeamStore();
 
@@ -18,7 +21,7 @@ const teamModal = useModal({
     onClose() {
       teamModal.close();
     },
-    async onSubmit(fields) {
+    async onCreate(fields) {
       try {
         await teamStore.create(fields);
 
@@ -29,10 +32,27 @@ const teamModal = useModal({
         console.error(error);
       }
     },
+    async onUpdate(fields) {
+      try {
+        await teamStore.update(fields._id, _.omit(fields, ["_id"]));
+        teamModal.close();
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 });
 
 const onTeamAdd = () => teamModal.open();
+
+const onTeamEdit = (team: Team) => {
+  teamModal.patchOptions({
+    attrs: {
+      ...team,
+    },
+  });
+  teamModal.open();
+};
 
 onMounted(() => {
   teamStore.fetch({ limit: 12, skip: 0 });
@@ -46,7 +66,12 @@ onMounted(() => {
       <SectionTitle title="Teams" />
     </div>
     <TeamCardList>
-      <TeamCard v-for="team in teams" :team="team" :key="team._id" />
+      <TeamCard
+        v-for="team in teams"
+        :team="team"
+        :key="team._id"
+        @click="() => onTeamEdit(team)"
+      />
     </TeamCardList>
     <div class="page-section">
       <NewAction label="New Team" @click="onTeamAdd" />

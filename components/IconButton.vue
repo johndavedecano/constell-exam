@@ -27,9 +27,7 @@ const {
   label = "",
 } = defineProps<IconProps>();
 
-const emit = defineEmits<{
-  (e: "click"): void;
-}>();
+const emit = defineEmits(["click"]);
 
 const onClick = () => emit("click");
 

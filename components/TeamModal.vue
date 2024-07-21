@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { getNode } from "@formkit/core";
+
 const teamForm = ref();
 
-const props = { id: "", name: "", abbreviation: "", color: "" };
+const props = defineProps(["_id", "name", "color", "abbreviation"]);
 
-const emit = defineEmits(["close", "submit"]);
+const emit = defineEmits(["close", "update", "create"]);
 
 const validateForm = () => {
   // retrieve the core node (several ways to do this):
@@ -12,7 +14,10 @@ const validateForm = () => {
   node.submit();
 };
 
-const submitForm = (fields = {}) => emit("submit", { ...fields, id: props.id });
+const submitForm = (fields = {}) => {
+  if (props._id) return emit("update", { ...fields, _id: props._id });
+  emit("create", fields);
+};
 </script>
 
 <template>
@@ -29,26 +34,29 @@ const submitForm = (fields = {}) => emit("submit", { ...fields, id: props.id });
         <div class="form-col">
           <FormKit
             label="Name *"
+            id="name"
             name="name"
             type="text"
             validation="required"
-            :value="props.name"
+            v-model="props.name"
           />
         </div>
         <div class="form-col">
           <FormKit
             label="Color *"
+            id="color"
             name="color"
             type="color"
             validation="required"
-            :value="props.color"
+            v-model="props.color"
           />
           <FormKit
             label="Abbreviation *"
+            id="abbreviation"
             name="abbreviation"
             type="text"
             validation="required"
-            :value="props.abbreviation"
+            v-model="props.abbreviation"
           />
         </div>
         <div class="form-col">
