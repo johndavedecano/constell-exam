@@ -71,6 +71,11 @@ body {
   background-color: $bg-body;
   transition: all 200ms ease-in-out;
   min-width: 0;
+
+  &[type="color"] {
+    min-height: 54px;
+  }
+
   &:focus {
     background-color: $color-white;
   }

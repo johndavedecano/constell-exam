@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { ModalsContainer } from "vue-final-modal";
+
 const mobileNav = useMobileNav();
 </script>
 
@@ -13,6 +15,7 @@ const mobileNav = useMobileNav();
         </Main>
       </PageWrapper>
       <MobileNav v-if="mobileNav" />
+      <ModalsContainer />
     </ClientOnly>
   </Wrapper>
 </template>
