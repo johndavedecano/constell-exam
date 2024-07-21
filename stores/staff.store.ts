@@ -8,6 +8,8 @@ export const useStaffStore = defineStore("staff", () => {
 
   const loading = ref(false);
 
+  const contact = ref<User>();
+
   const fetch = async (filter: QueryFilter) => {
     try {
       loading.value = true;
@@ -55,11 +57,41 @@ export const useStaffStore = defineStore("staff", () => {
     }
   };
 
+  const show = async (id: string) => {
+    try {
+      loading.value = true;
+
+      const response = await axios.get(`/api/staff/${id}`);
+
+      contact.value = response.data;
+    } catch (error) {
+      throw new Error();
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const destroy = async (id: string) => {
+    try {
+      loading.value = true;
+
+      items.value = items.value.filter((u) => u._id !== id);
+
+      await axios.delete(`/api/staff/${id}`);
+    } catch (error) {
+      throw new Error();
+    } finally {
+      loading.value = false;
+    }
+  };
+
   return {
     items,
     loading,
     fetch,
     create,
     update,
+    show,
+    destroy,
   };
 });

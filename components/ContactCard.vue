@@ -1,48 +1,52 @@
 <script lang="ts" setup>
 import type { User } from "~/types/index";
 
-const router = useRouter();
+const teamStore = useTeamStore();
 
 interface ContactCardProps extends User {}
 
 const props = defineProps<{ user: ContactCardProps }>();
 
+const emit = defineEmits(["destroy", "edit"]);
+
 const { user } = props;
 
-const onClick = () => router.push({ path: `/contacts/${user._id}` });
+const teams = computed(() => teamStore.items.slice(0, 3));
+
+const onEdit = () => emit("edit");
+
+const onDestroy = () => {
+  const conf = window.confirm("are you sure. you wanna delete this item?");
+  if (conf) emit("destroy");
+};
 </script>
 <template>
   <div class="contact-card">
-    <div class="contact-card__detail" @click="onClick">
+    <div class="contact-card__detail" @click="onEdit">
       <Avatar :initial="user.initials" :src="user.image" :size="24" />
       <div class="contact-card__info">
         <div class="contact-card__info__name">
           {{ user.displayName }}
           <span class="contact-card__info__role">{{ user.functionName }}</span>
         </div>
-        <div class="contact-card__info__phone">
-          {{ user.phoneCountryPrefix }} {{ user.phoneNumber }}
+        <div
+          class="contact-card__info__phone"
+          v-if="user.phoneCountryPrefix && user.phoneNumber"
+        >
+          +{{ user.phoneCountryPrefix }} {{ user.phoneNumber }}
+        </div>
+        <div class="contact-card__info__phone" v-else>
+          {{ user.email }}
         </div>
       </div>
     </div>
     <div class="contact-card__teams">
       <Avatar
-        :initial="user.initials"
+        v-for="team in teams"
+        :initial="team.abbreviation"
         :size="24"
         customClass="stack"
-        color="error"
-      />
-      <Avatar
-        :initial="user.initials"
-        :size="24"
-        customClass="stack"
-        color="success"
-      />
-      <Avatar
-        :initial="user.initials"
-        :size="24"
-        customClass="stack"
-        color="info"
+        :color="team.color"
       />
     </div>
     <div class="contact-card__action">
@@ -51,7 +55,7 @@ const onClick = () => router.push({ path: `/contacts/${user._id}` });
         name="delete"
         theme="transparent"
         :size="16"
-        @click.prevent="() => {}"
+        @click="onDestroy"
       />
     </div>
   </div>

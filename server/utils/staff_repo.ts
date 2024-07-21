@@ -29,7 +29,7 @@ const insert = (user: Partial<User>) => {
 };
 
 const remove = (id: string | number) => {
-  return db.staff?.remove(id);
+  return db.staff?.remove({ _id: id });
 };
 
 const update = (id: string | number, user: Partial<User>) => {

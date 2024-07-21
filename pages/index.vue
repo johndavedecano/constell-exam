@@ -1,15 +1,17 @@
 <script lang="ts" setup>
 import { useModal } from "vue-final-modal";
 
-import TeamModal from "~/components/TeamModal.vue";
-
-import type { Team } from "~/types";
-
 import _ from "lodash";
 
+import TeamModal from "~/components/TeamModal.vue";
+
+import type { Team, User } from "~/types";
+
 const teamStore = useTeamStore();
+const staffStore = useStaffStore();
 
 const teams: ComputedRef<Team[]> = computed(() => teamStore.items);
+const contacts: ComputedRef<User[]> = computed(() => staffStore.items);
 
 const router = useRouter();
 
@@ -61,8 +63,21 @@ const onTeamEdit = (team: Team) => {
   teamModal.open();
 };
 
+const onUserEdit = (user: User) => {
+  router.push(`/contacts/${user._id}`);
+};
+
+const onUserDestroy = (user: User) => {
+  try {
+    staffStore.destroy(user._id);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 onMounted(() => {
   teamStore.fetch({ limit: 12, skip: 0 });
+  staffStore.fetch({ limit: 1000, skip: 0 });
 });
 </script>
 
@@ -87,7 +102,15 @@ onMounted(() => {
     <div class="page-section">
       <SectionTitle title="People" />
     </div>
-    <ContactCardList> </ContactCardList>
+    <ContactCardList>
+      <ContactCard
+        v-for="user in contacts"
+        :user="user"
+        :key="user._id"
+        @edit="() => onUserEdit(user)"
+        @destroy="() => onUserDestroy(user)"
+      />
+    </ContactCardList>
     <div class="page-section">
       <NewAction
         label="New User"

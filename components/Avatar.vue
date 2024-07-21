@@ -70,6 +70,9 @@ const styles = computed(() => {
   max-height: v-bind(size);
   background-color: $color-white;
   color: $text-body;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .avatar-primary {
