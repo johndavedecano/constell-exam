@@ -1,4 +1,4 @@
-import type { Country } from "~/types";
+import type { Country } from "~/types/index";
 
 const countries: Country[] = [
   { country: "Afghanistan", code: "93", iso: "AF" },

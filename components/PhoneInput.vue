@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Country } from "~/types";
+import type { Country } from "~/types/index";
 
 import parsePhoneNumber from "libphonenumber-js";
 

@@ -19,8 +19,8 @@ export interface Team {
 }
 
 export interface User {
-  iri: string;
-  id: number;
+  iri?: string;
+  id?: number;
   fullName: string;
   displayName: string;
   initials: string;
@@ -29,7 +29,7 @@ export interface User {
   phoneCountryPrefix: string;
   teamIds: number[];
   image: string;
-  address: UserAddress;
+  address?: UserAddress;
   isEmployee: boolean;
   functionName: string;
   userPermissions: string[];

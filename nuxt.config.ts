@@ -30,4 +30,8 @@ export default defineNuxtConfig({
       ],
     },
   },
+  ignore: ["server/api/handlers"],
+  sourcemap: {
+    server: false,
+  },
 });

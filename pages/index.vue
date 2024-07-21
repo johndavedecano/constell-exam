@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Team, User } from "~/types";
+import type { Team, User } from "~/types/index";
 
 useHead({
   title: "Constell - Home",

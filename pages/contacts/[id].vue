@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { SelectOption } from "~/types";
+import type { SelectOption } from "~/types/index";
 
 import PhoneInput from "~/components/PhoneInput.vue";
 
@@ -148,15 +148,15 @@ const submitForm = () => {
     right: 0;
     bottom: 0;
 
+    background-color: $bg-body;
+    border-top: solid 1px $border;
+
     @include respond-to(xl) {
       border: none;
       max-width: 1200px;
       margin: auto;
       justify-content: flex-end;
     }
-
-    background-color: $bg-body;
-    border-top: solid 1px $border;
 
     &-spacer {
       display: none;

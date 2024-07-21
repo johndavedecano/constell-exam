@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Team } from "~/types";
+import type { Team } from "~/types/index";
 
 interface TeamCardProps extends Team {}
 
