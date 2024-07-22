@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import type { Country } from "~/types/index";
 
-import parsePhoneNumber from "libphonenumber-js";
-
 const props = defineProps({
   context: Object,
 });
@@ -15,22 +13,12 @@ const values = reactive({
 const countryList: Country[] = countries;
 
 const onInput = () => {
-  try {
-    const parsed = parsePhoneNumber(
-      `+${values.phoneCountryPrefix}${values.phoneNumber}`
-    );
+  const nextValue = {
+    phoneNumber: values.phoneNumber,
+    phoneCountryPrefix: values.phoneCountryPrefix,
+  };
 
-    if (!parsed) throw new Error();
-
-    const nextValue = {
-      phoneNumber: values.phoneNumber,
-      phoneCountryPrefix: values.phoneCountryPrefix,
-    };
-
-    props.context?.node.input(nextValue);
-  } catch (_error) {
-    props.context?.node.input(undefined);
-  }
+  props.context?.node.input(nextValue);
 };
 
 onMounted(() => {
@@ -53,7 +41,7 @@ onMounted(() => {
       ></option>
     </select>
     <input
-      v-model="values.phoneNumber"
+      :value="values.phoneNumber"
       type="text"
       class="phone-input__input"
       name="phone_number"
