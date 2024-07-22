@@ -17,15 +17,15 @@ const staffStore = useStaffStore();
 
 const user = computed(() => staffStore.contact);
 
-const onCreateNew = async (fields = {}) => {
+const onUpdateStaff = async (fields = {}) => {
   try {
     const params: Partial<User> = {
       fullName: _.get(fields, "fullName", ""),
       displayName: _.get(fields, "displayName", ""),
       initials: _.get(fields, "initials", ""),
       email: _.get(fields, "email", ""),
-      phoneNumber: _.get(fields, "phone.phoneNumber"),
-      phoneCountryPrefix: _.get(fields, "phone.phoneCountryPrefix"),
+      phoneNumber: Number(_.get(fields, "phone.phoneNumber")),
+      phoneCountryPrefix: Number(_.get(fields, "phone.phoneCountryPrefix")),
       image: _.get(fields, "image", ""),
       isEmployee: _.get(fields, "isEmployee", true),
       functionName: _.get(fields, "functionName", ""),
@@ -63,7 +63,11 @@ onMounted(() => {
 <template>
   <Container>
     <div class="page-section">
-      <UserForm @submit="onCreateNew" :user="user" v-if="!staffStore.loading" />
+      <UserForm
+        @submit="onUpdateStaff"
+        :user="user"
+        v-if="!staffStore.loading"
+      />
     </div>
   </Container>
 </template>
