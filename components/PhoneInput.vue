@@ -31,7 +31,7 @@ onMounted(() => {
 
 <template>
   <div class="phone-input">
-    <select class="phone-input__select" :value="values.phoneCountryPrefix">
+    <select class="phone-input__select" v-model="values.phoneCountryPrefix">
       <option
         v-for="country in countryList"
         :key="country.code"
@@ -41,7 +41,7 @@ onMounted(() => {
       ></option>
     </select>
     <input
-      :value="values.phoneNumber"
+      v-model="values.phoneNumber"
       type="text"
       class="phone-input__input"
       name="phone_number"
