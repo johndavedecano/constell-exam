@@ -1,9 +1,16 @@
 <script setup lang="ts">
 const router = useRouter();
+
+const route = useBackRoute();
 </script>
 
 <template>
-  <a class="back-btn" href="#" @click.prevent="$router.back()">
+  <a
+    class="back-btn"
+    href="#"
+    @click.prevent="$router.push(route)"
+    v-if="route"
+  >
     <Icon name="chevron_backward" :size="40" />
     <span class="back-btn__label"> Back </span>
   </a>

@@ -9,6 +9,7 @@ import type { Team, User } from "~/types";
 
 useMobileNav(true);
 usePageTitle("");
+useBackRoute("/");
 
 const teamStore = useTeamStore();
 const staffStore = useStaffStore();

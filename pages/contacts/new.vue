@@ -7,6 +7,8 @@ useMobileNav(false);
 
 usePageTitle("New User");
 
+useBackRoute("/contacts");
+
 useHead({
   title: "Constell - New Contact",
 });

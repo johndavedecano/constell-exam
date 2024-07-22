@@ -21,3 +21,15 @@ export const usePageTitle = (value?: string | undefined) => {
 
   return val;
 };
+
+export const useBackRoute = (value?: string | undefined) => {
+  const val = useState("back_route");
+
+  onMounted(() => {
+    val.value = value;
+  });
+
+  onBeforeUnmount(() => (val.value = undefined));
+
+  return val;
+};

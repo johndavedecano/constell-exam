@@ -1,25 +1,12 @@
 <script setup lang="ts">
-const length = ref();
-
 const route = useRoute();
-
-watch(
-  () => route.fullPath,
-  () => {
-    length.value = window.history.length;
-  }
-);
-
-onMounted(() => {
-  length.value = window.history.length;
-});
 
 const title = usePageTitle();
 </script>
 
 <template>
   <header class="header">
-    <BackButton v-if="length > 2" />
+    <BackButton />
     <Spacer />
     <div v-if="title !== undefined" class="header__title">
       {{ title }}

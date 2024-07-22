@@ -6,6 +6,7 @@ import _ from "lodash";
 useMobileNav(false);
 
 usePageTitle("Edit User");
+useBackRoute("/contacts");
 
 useHead({
   title: "Constell - Edit User",
